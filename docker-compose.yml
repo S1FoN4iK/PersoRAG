@@ -1,0 +1,14 @@
+services:
+  bot:
+    build: .
+    container_name: rag-character-bot
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./characters:/app/characters:ro
+      - ./chroma_db:/app/chroma_db
+      - ./data:/app/data
+      - hf_cache:/app/.cache/huggingface
+
+volumes:
+  hf_cache:
